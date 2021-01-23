@@ -1,13 +1,11 @@
-import { StatusBar } from "expo-status-bar";
+// import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import {
   StyleSheet,
-  Text,
   View,
-  Button,
-  TextInput,
-  ScrollView,
   FlatList,
+  Platform,
+  StatusBar
 } from "react-native";
 import Header from './components/header';
 import TodoItem from './components/todoitem';
@@ -57,6 +55,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
   },
   content: {
     padding: 20,
