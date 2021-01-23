@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import Header from './components/header';
 import TodoItem from './components/todoitem';
+import AddTodo from './components/addtodo';
 
 export default function App() {
   const [todos, setTodos] = useState([
@@ -25,17 +26,25 @@ export default function App() {
     })
   }
 
+  const submitHandler = (text) => {
+    setTodos((prevTodos) => {
+      return [
+        { text: text, key: Math.random().toString() },
+        ...prevTodos
+      ]
+    })
+  }
   return (
     <View style={styles.container}>
       {/* header */}
       <Header />
       <View style={styles.content}>
-        {/* to form */}
+        <AddTodo submitHandler={submitHandler} />
         <View style={styles.list}>
           <FlatList
             data={todos}
             renderItem={({ item }) => (
-              <TodoItem item={item} pressHandler={pressHandler}/>
+              <TodoItem item={item} pressHandler={pressHandler} />
             )}
           />
         </View>
